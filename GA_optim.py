@@ -1,7 +1,7 @@
 import torch
 from model import custom_model
 from torch import optim
-
+from collections import OrderedDict
 
 #should Inherite from optim.Optimizer later
 class GA_optim:
@@ -62,4 +62,14 @@ class GA_optim:
     def elitism(self, prnt, chld):
         pass
 
+    def save_state(self,name_of_state='states.pt'):
+        states = [(i, mod.state_dict()) for i,mod in enumerate(self.chrms)]
+        torch.save(OrderedDict(states),name_of_state)
+        
+    @classmethod
+    def from_state(cls,model_object=None, Npop=10,  Pc=0.5, Pm=0.05, dict_of_states=None):
+        inst = cls(model_object, Npop=Npop,  Pc=Pc, Pm=Pm)
+        inst.chrms = [model_object().load_state_dict(mod) for i,mod in dict_of_states]
+        inst.Npop = len(inst.chrms)
+        return inst
     
