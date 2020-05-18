@@ -5,10 +5,10 @@ from collections import OrderedDict
 
 #should Inherite from optim.Optimizer later
 class GA_optim:
-    def __init__(self, model_object, Npop=10,  Pc=0.5, Pm=0.05):
+    def __init__(self, model_object, Npop=10,  Pc=0.5, Pm=0.05,from_state=False):
         self.model_object = model_object
         self.Npop = Npop
-        self.chrms = [self.model_object() for each in range(self.Npop)]
+        self.chrms = [self.model_object() for each in range(self.Npop)] if from_state == False else None
         self.Pc = Pc
         self.Pm = Pm
 
@@ -63,13 +63,23 @@ class GA_optim:
         pass
 
     def save_state(self,name_of_state='states.pt'):
-        states = [(i, mod.state_dict()) for i,mod in enumerate(self.chrms)]
-        torch.save(OrderedDict(states),name_of_state)
-        
+        states = OrderedDict([(i, mod.state_dict()) for i,mod in enumerate(self.chrms)])
+        torch.save(OrderedDict([
+                                    ('model_object', self.model_object),
+                                    ('states', states),
+                                    ('Npop', self.Npop),
+                                    ('Pc', self.Pc),
+                                    ('Pm', self.Pm)
+                                ]),
+                                name_of_state)
+
     @classmethod
-    def from_state(cls,model_object=None, Npop=10,  Pc=0.5, Pm=0.05, dict_of_states=None):
-        inst = cls(model_object, Npop=Npop,  Pc=Pc, Pm=Pm)
-        inst.chrms = [model_object().load_state_dict(mod) for i,mod in dict_of_states]
-        inst.Npop = len(inst.chrms)
+    def from_state(cls,dict_of_states=None):
+        Npop = dict_of_states['Npop']
+        Pc = dict_of_states['Pc']
+        Pm = dict_of_states['Pm']
+        model_object = dict_of_states['model_object']
+        inst = cls(model_object, Npop=Npop,  Pc=Pc, Pm=Pm, from_state=True)
+        inst.chrms = [model_object().load_state_dict(mod) for i,mod in dict_of_states['states']]
         return inst
     
