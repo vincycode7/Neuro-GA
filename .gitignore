@@ -1,2 +1,8 @@
+#Dataset Folder
 dataset/
+
+#py folder
+__pycache__
+
+#all csv filesgit 
 *.csv
