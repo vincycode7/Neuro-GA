@@ -1,9 +1,9 @@
 Write-UP For ProJect
 
-[Intro]
+[Intro].
 This Project Is one that aims to explore genetic algorithm and it's application in optimizing neural network for better performance. In this project the main field the two algorithms will be applied to is the *Custom field*, where goods are been checked for any fraudulent act. The project aims to achieve success in training a model that can successfully Identify fraudulent act in the process of importing goods thereby reducing time allocated to checking goods by narrowing search to goods that really call for concern. 
 
-[The Dataset]
+[The Dataset].
 The dataset Used For this Project was gotten from custom and it is a collection of data of all the official daily records from 2018 to 2019. The Dataset has 21 features But out of this features only 13 will be relivant for the Project. The features are :-
 
                                     > 1. Importer | 'IMPORTER_NAME',
@@ -25,14 +25,14 @@ The dataset Used For this Project was gotten from custom and it is a collection 
 
 
 
-[The Algorithm]
-
+[The Algorithm].
+So, The way the algorithm is going to work is, the user will have the option of either training the algorithm with only Gradient Descent as the optimizer or Only Genetic Algorithm as the Optimizer or Training with both Gradient Descent and Genetic Algorithm. Since GD is not an evolution algorithm, if training with only GD is enabled, only GD will be used to optimize the individual instances of the model seperately, On the other hand since GA is an evolution algorithm it will be used to collectively optimize a fixed number of populations together, this population otherwise known as chromosomes in GA or weight of an instance In Neural Networks after some genration are expected to help each other get the work done using some special operators.
 
                                                     << About the Artificial neural network >>
 
                                                         <<  About Genetic Algorithm >>
 
-[The Method]
+[The Method].
 
                                                         ** Selection Operator **
 
