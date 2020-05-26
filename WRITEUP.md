@@ -1,7 +1,7 @@
 Write-UP For ProJect
 
 [Intro]
-This Project Is one that aims to explore genetic algorithm and it's application in optimizing neural network for better performance. In this project the main field the two algorithms will be applied to is the *Custom field*, where goods are been checked for any fraudulent act. The project aims to achive success in training a model that can successfully Identify fraudulent act in the process of importing goods thereby reducing time allocated to checking goods by narrowing search to goods that really calls for concern. 
+This Project Is one that aims to explore genetic algorithm and it's application in optimizing neural network for better performance. In this project the main field the two algorithms will be applied to is the *Custom field*, where goods are been checked for any fraudulent act. The project aims to achieve success in training a model that can successfully Identify fraudulent act in the process of importing goods thereby reducing time allocated to checking goods by narrowing search to goods that really call for concern. 
 
 [The Dataset]
 The dataset Used For this Project was gotten from custom and it is a collection of data of all the official daily records from 2018 to 2019. The Dataset has 21 features But out of this features only 13 will be relivant for the Project. The features are :-
@@ -28,11 +28,12 @@ The dataset Used For this Project was gotten from custom and it is a collection 
 [The Algorithm]
 
 
-                                                    << About the neural network >>
+                                                    << About the Artificial neural network >>
 
-                                                    <<  About Genetic Algorithm >>
+                                                        <<  About Genetic Algorithm >>
 
 [The Method]
+
                                                         ** Selection Operator **
 
                                                         ** Cross-Over Operator **
