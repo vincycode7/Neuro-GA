@@ -1,15 +1,47 @@
 Write-UP For ProJect
 
-[The Dataset]
+[Intro].
+This Project Is one that aims to explore genetic algorithm and it's application in optimizing neural network for better performance. In this project the main field the two algorithms will be applied to is the *Custom field*, where goods are been checked for any fraudulent act. The project aims to achieve success in training a model that can successfully Identify fraudulent act in the process of importing goods thereby reducing time allocated to checking goods by narrowing search to goods that really call for concern. 
+
+[The Dataset].
+The dataset Used For this Project was gotten from custom and it is a collection of data of all the official daily records from 2018 to 2019. The Dataset has 21 features But out of this features only 13 will be relivant for the Project. The features are :-
+
+                                    > 1. Importer | 'IMPORTER_NAME',
+                                    > 2. Declarant | 'DECLARANT_NAME',
+                                    > 3. Country of Origin | 'CTY_ORIGIN',
+                                    > 4. Commodities | 'HS_DESC',
+                                    > 5. Item price | 'ITM_PRICE',
+                                    > 6. Mode of tramsport | 'MODE_OF_TRANSPORT',
+                                    > 7. Number of items | 'ITM_NUM',
+                                    > 8. Gross Mass | 'GROSS_MASS',
+                                    > 9. Net Mass | 'NET_MASS',
+                                    > 10. Tax amount | 'TOTAL_TAX',
+                                    > 11. Invoice amount | 'INVOICE_AMT',
+                                    > 12. Quantity | 'QTY',
+                                    > 13. Statistical value | 'STATISTICAL_VALUE'.
+
+5 Discrete Feature(s) --> (CTY_ORIGIN, MODE_OF_TRANSPORT, QTY, *ITM_NUM will be splitted into two features first  feature will be the current_quantity, second will be the total_quantity*). 6 continous Feature(s) --> (GROSS_MASS, NET_MASS, ITM_PRICE, STATISTICAL_VALUE	, TOTAL_TAX	, INVOICE_AMT). 4 string Feature(s) -->(IMPORTER_NAME, DECLARANT_NAME, HS_DESC, INSPECTION_ACT).
 
 
 
-[The Algorithm]
+
+[The Algorithm].
+So, The way the algorithm is going to work is, the user will have the option of either training the algorithm with only Gradient Descent as the optimizer or Only Genetic Algorithm as the Optimizer or Training with both Gradient Descent and Genetic Algorithm. Since GD is not an evolution algorithm, if training with only GD is enabled, only GD will be used to optimize the individual instances of the model seperately, On the other hand since GA is an evolution algorithm it will be used to collectively optimize a fixed number of populations together, this population otherwise known as chromosomes in GA or weight of an instance In Neural Networks after some genration are expected to help each other get the work done using some special operators.
 
 
-                                                    << About the neural network >>
+                                                    << About the Artificial neural network (Definition From wikipedia)>>
+Artificial neural networks (ANN) or connectionist systems are computing systems vaguely inspired by the biological neural networks that constitute animal brains. Such systems "learn" to perform tasks by considering examples, generally without being programmed with task-specific rules. For example, in image recognition, they might learn to identify images that contain cats by analyzing example images that have been manually labeled as "cat" or "no cat" and using the results to identify cats in other images. They do this without any prior knowledge of cats, for example, that they have fur, tails, whiskers and cat-like faces. Instead, they automatically generate identifying characteristics from the examples that they process.
 
-                                                    <<  About Genetic Algorithm >>
+An ANN is based on a collection of connected units or nodes called artificial neurons, which loosely model the neurons in a biological brain. Each connection, like the synapses in a biological brain, can transmit a signal to other neurons. An artificial neuron that receives a signal then processes it and can signal neurons connected to it.
+
+In ANN implementations, the "signal" at a connection is a real number, and the output of each neuron is computed by some non-linear function of the sum of its inputs. The connections are called edges. Neurons and edges typically have a weight that adjusts as learning proceeds. The weight increases or decreases the strength of the signal at a connection. Neurons may have a threshold such that a signal is sent only if the aggregate signal crosses that threshold. Typically, neurons are aggregated into layers. Different layers may perform different transformations on their inputs. Signals travel from the first layer (the input layer), to the last layer (the output layer), possibly after traversing the layers multiple times.
+
+The original goal of the ANN approach was to solve problems in the same way that a human brain would. But over time, attention moved to performing specific tasks, leading to deviations from biology. ANNs have been used on a variety of tasks, including computer vision, speech recognition, machine translation, social network filtering, playing board and video games, medical diagnosis, and even in activities that have traditionally been considered as reserved to humans, like painting.
+
+
+                                                        <<  About Genetic Algorithm >>
+
+[The Method].
 
                                                         ** Selection Operator **
 
@@ -18,4 +50,6 @@ Write-UP For ProJect
                                                         ** Mutation Operator **
 
                                                              ** Elitism **
+
+[What is been optimuzed]
 
