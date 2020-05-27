@@ -125,7 +125,14 @@ When training a neural network for real world application, it is of best practic
 
 
                                                      ** Selection Operator (roulette-wheel selection)**
-Selection is the stage of a genetic algorithm in which individual genomes are chosen from a population for later breeding (using the crossover operator).
+Selection is the stage of a genetic algorithm in which individual genomes are chosen from a population for later breeding (using the crossover operator). The Selection method that will be Used for this project is the roulette-wheel selection. 
+
+In the roulette wheel selection, the probability of choosing an individual for breeding of the next generation is proportional to its fitness, the better the fitness is, the higher chance for that individual to be chosen. Choosing individuals can be depcited as spinning a roulette that has as many pockets as there are individuals in the current generation, with sizes depending on their probability. Probability of choosing individual i is equal to *p_{i} = f_{i}/summation(f_{j}  from j=1 to j=N, where N is the population size)*
+
+, where f_{i} is the fitness of i and N is the size of current generation (note that in this method one individual can be drawn multiple times) If we're working on minimization problem, it is however needed to transform it into maximization problem (which can be easily done by taking the inversion of our fitness). However, Our implementation allows some level of randomness by giving chance to individuals with low fitness to move to the next generation. This will help avoid been stuck at local minima.
+
+The Reason for this selection approach is so as to avoid getting stuck at local minimum.
+
                                                         ** Cross-Over Operator **
 
                                                         ** Mutation Operator **
