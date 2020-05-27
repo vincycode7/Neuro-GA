@@ -140,11 +140,19 @@ In genetic algorithms and evolutionary computation, crossover, also called recom
 Different algorithms in evolutionary computation may use different data structures to store genetic information, and each genetic representation can be recombined with different crossover operators. Typical data structures that can be recombined with crossover are bit arrays, vectors of real numbers, or trees.
 
 == Two-point and k-point crossover ==
-In two-point crossover, two crossover points are picked randomly from the parent chromosomes. The bits in between the two points are swapped between the parent organisms.
+This Project uses The k-point crossover operator. In k-point crossover say k is two, two crossover points are picked randomly from the parent chromosomes. The bits in between the two points are swapped between the parent organisms.
 
-Two-point crossover is equivalent to performing two single-point crossovers with different crossover points. This strategy can be generalized to k-point crossover for any positive integer k, picking k crossover points.
+Two-point crossover is equivalent to performing two single-point crossovers with different crossover points. This strategy can be generalized to k-point crossover for any positive integer k, picking k crossover points. This project assign value to k according to the number of hidden layers in the network, i.e a network with a single hidden layer will result in one point crossover, 2 hidden layer will result in two point crossover and so on. 
 
-                                                        ** Mutation Operator **
+                        ** Mutation Operator (https://en.wikipedia.org/wiki/Mutation_(genetic_algorithm)**
+
+Mutation is a genetic operator used to maintain genetic diversity from one generation of a population of genetic algorithm chromosomes to the next. It is analogous to biological mutation. Mutation alters one or more gene values in a chromosome from its initial state. In mutation, the solution may change entirely from the previous solution. Hence GA can come to a better solution by using mutation. Mutation occurs during evolution according to a user-definable mutation probability. This probability should be set low. If it is set too high, the search will turn into a primitive random search.
+
+The classic example of a mutation operator involves a probability that an arbitrary bit in a genetic sequence will be flipped from its original state. A common method of implementing the mutation operator involves generating a random variable for each bit in a sequence. This random variable tells whether or not a particular bit will be flipped. This mutation procedure, based on the biological point mutation, is called single point mutation. Other types are inversion and floating point mutation. When the gene encoding is restrictive as in permutation problems, mutations are swaps, inversions, and scrambles.
+
+The purpose of mutation in GAs is to introduce diversity into the sampled population. Mutation operators are used in an attempt to avoid local minima by preventing the population of chromosomes from becoming too similar to each other, thus slowing or even stopping convergence to the global optimum. This reasoning also leads most GA systems to avoid only taking the fittest of the population in generating the next generation, but rather selecting a random (or semi-random) set with a weighting toward those that are fitter.
+
+In this program, n gene values are selected by specifying a constant value *pop_prob* which is a value between zero and one, zero meaning to select no gene and one meaning to select all genes for mutation this value is specified by the user. After  genes to be mutated are selected, n random probabilities is generated to determine which gene finally becomes mutated. Any probability value that is greated than a specific threshold that is specified by the user will finally be mutated the rest will retain their initial values. Mutation is done by passing current value of a gene through a sigmoid function that shrinks the value between zero and one.
 
                                                              <!-- ** Elitism ** -->
 
