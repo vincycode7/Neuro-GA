@@ -124,7 +124,8 @@ The Sum of the mean adds up to 1.
 When training a neural network for real world application, it is of best practice to pick models that that has a low loss, at the same time high accuracy and score . This will also help avoid been stuck at a local minima. 
 
 
-                                        ** Selection Operator (roulette-wheel selection)**
+    ** Selection Operator (roulette-wheel selection -- https://en.wikipedia.org/wiki/Selection_(genetic_algorithm))**
+    
 Selection is the stage of a genetic algorithm in which individual genomes are chosen from a population for later breeding (using the crossover operator). The Selection method that will be Used for this project is the roulette-wheel selection. 
 
 In the roulette wheel selection, the probability of choosing an individual for breeding of the next generation is proportional to its fitness, the better the fitness is, the higher chance for that individual to be chosen. Choosing individuals can be depcited as spinning a roulette that has as many pockets as there are individuals in the current generation, with sizes depending on their probability. Probability of choosing individual i is equal to *p_{i} = f_{i}/summation(f_{j}  from j=1 to j=N, where N is the population size)*
@@ -139,7 +140,7 @@ In genetic algorithms and evolutionary computation, crossover, also called recom
 
 Different algorithms in evolutionary computation may use different data structures to store genetic information, and each genetic representation can be recombined with different crossover operators. Typical data structures that can be recombined with crossover are bit arrays, vectors of real numbers, or trees.
 
-== Two-point and k-point crossover ==
+== Two-point and k-point crossover (Implementation)==
 This Project uses The k-point crossover operator. In k-point crossover say k is two, two crossover points are picked randomly from the parent chromosomes. The bits in between the two points are swapped between the parent organisms.
 
 Two-point crossover is equivalent to performing two single-point crossovers with different crossover points. This strategy can be generalized to k-point crossover for any positive integer k, picking k crossover points. This project assign value to k according to the number of hidden layers in the network, i.e a network with a single hidden layer will result in one point crossover, 2 hidden layer will result in two point crossover and so on. 
@@ -152,6 +153,7 @@ The classic example of a mutation operator involves a probability that an arbitr
 
 The purpose of mutation in GAs is to introduce diversity into the sampled population. Mutation operators are used in an attempt to avoid local minima by preventing the population of chromosomes from becoming too similar to each other, thus slowing or even stopping convergence to the global optimum. This reasoning also leads most GA systems to avoid only taking the fittest of the population in generating the next generation, but rather selecting a random (or semi-random) set with a weighting toward those that are fitter.
 
+== Implementation ==
 In this program, n gene values are selected by specifying a constant value *pop_prob* which is a value between zero and one, zero meaning to select no gene and one meaning to select all genes for mutation this value is specified by the user. After  genes to be mutated are selected, n random probabilities is generated to determine which gene finally becomes mutated. Any probability value that is greated than a specific threshold that is specified by the user will finally be mutated the rest will retain their initial values. Mutation is done by passing current value of a gene through a sigmoid function that shrinks the value between zero and one.
 
                                                              <!-- ** Elitism ** -->
