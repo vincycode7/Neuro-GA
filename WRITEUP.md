@@ -124,7 +124,7 @@ The Sum of the mean adds up to 1.
 When training a neural network for real world application, it is of best practice to pick models that that has a low loss, at the same time high accuracy and score . This will also help avoid been stuck at a local minima. 
 
 
-                                                     ** Selection Operator (roulette-wheel selection)**
+                                        ** Selection Operator (roulette-wheel selection)**
 Selection is the stage of a genetic algorithm in which individual genomes are chosen from a population for later breeding (using the crossover operator). The Selection method that will be Used for this project is the roulette-wheel selection. 
 
 In the roulette wheel selection, the probability of choosing an individual for breeding of the next generation is proportional to its fitness, the better the fitness is, the higher chance for that individual to be chosen. Choosing individuals can be depcited as spinning a roulette that has as many pockets as there are individuals in the current generation, with sizes depending on their probability. Probability of choosing individual i is equal to *p_{i} = f_{i}/summation(f_{j}  from j=1 to j=N, where N is the population size)*
