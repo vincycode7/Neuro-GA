@@ -63,8 +63,8 @@ The first optimization using GD is immedietly followed by a GA optimization usin
 
 == implementation example. ==
 
---fitness for loss--
-given loss of [0.1,0.35,0.7]
+-- fitness for loss --
+given the following loss from 3 populations [0.1,0.35,0.7]
 
 (1) we normalize by first summing up the values
 0.1+0.35+0.7 = 1.15
@@ -76,12 +76,56 @@ given loss of [0.1,0.35,0.7]
 
 0.913+0.6957+0.3913 = 2
 
+(0.1) --> 0.4565
+(0.35) --> 0.34785
+(0.7)  --> 0.19565  
 
 
+-- fitness for accuracy --
+given the following accuracy from the same 3 populations [0.76,0.77,0.50] 
+
+(1) we normalize by first summing up the values
+0.76+0.77+0.50 = 2.03
+
+(2) then we get the normaized values by 
+(0.76) --> 0.374384236
+(0.77) --> 0.379310345
+(0.50) --> 0.246305419
+
+-- fitness for f1score --
+given the following f1score from the same 3 populations [0.60,0.79,0.55] 
+
+(1) we normalize by first summing up the values
+0.60+0.79+0.55 = 1.94
+
+(2) then we get the normaized values by 
+(0.60) --> 0.309278351
+(0.79) --> 0.407216495
+(0.55) --> 0.283505155
+
+Next we calculate the mean of this normalized values and then normalized them.
+
+(mean)                                 
+(mean 1) --> (0.4565 + 0.374384236 + 0.309278351)/3 = 0.380054196
+
+(mean 2) --> (0.34785 + 0.379310345 + 0.407216495)/3 = 0.378125613
+
+(mean 3) --> (0.19565 + 0.246305419 + 0.283505155)/3 = 0.241820191
+
+(cummulative mean after sorting in ascending order)
+(cum mean 3) --> 0 + 0.241820191 = 0.241820191
+(cum mean 2) --> 0.241820191 + 0.378125613 = 0.619945804
+(cum mean 1) --> 0.619945804 + 0.380054196 = 1
 
 
-                                                        ** Selection Operator (roulette-wheel selection)**
+The Sum of the mean adds up to 1.
 
+== Reason For This Approach ==
+When training a neural network for real world application, it is of best practice to pick models that that has a low loss, at the same time high accuracy and score . This will also help avoid been stuck at a local minima. 
+
+
+                                                     ** Selection Operator (roulette-wheel selection)**
+Selection is the stage of a genetic algorithm in which individual genomes are chosen from a population for later breeding (using the crossover operator).
                                                         ** Cross-Over Operator **
 
                                                         ** Mutation Operator **
