@@ -26,7 +26,7 @@ The dataset Used For this Project was gotten from custom and it is a collection 
 
 
 [The Algorithm].
-So, The way the algorithm is going to work is, the user will have the option of either training the algorithm with only Gradient Descent as the optimizer or Only Genetic Algorithm as the Optimizer or Training with both Gradient Descent and Genetic Algorithm. Since GD is not an evolution algorithm, if training with only GD is enabled, only GD will be used to optimize the individual instances of the model seperately, On the other hand since GA is an evolution algorithm it will be used to collectively optimize a fixed number of populations together, this population otherwise known as chromosomes in GA or weight of an instance In Neural Networks after some genration are expected to help each other get the work done using some special operators.
+So, The way the algorithm is going to work is, the user will have the option of either training the algorithm with only Gradient Descent as the optimizer or Only Genetic Algorithm as the Optimizer or Training with both Gradient Descent and Genetic Algorithm. Since GD is not an evolution algorithm, if training with only GD is enabled, only GD will be used to optimize the individual instances of the model seperately, On the other hand since GA is an evolution algorithm it will be used to collectively optimize a fixed number of populations together, this population otherwise known as chromosomes in GA or weight of an instance In Neural Networks after some generation are expected to help each other get the work done using some special operators.
 
 
             << About the Artificial neural network (https://en.wikipedia.org/wiki/Artificial_neural_network)>>
@@ -49,17 +49,17 @@ The strength of this parallel process is enhanced by the mechanics of population
 
                                                     << Initialize Population >>
 
-So basically, Just like every other genetic algorithm applications, n populations chromosomes will be initialized,where n is the number of individual or chromosomes to be randomly created. However In This case the chromosomes are not going to be 0s and 1s but the weights of the n instance of the ANN archtecture i.e, we are creating n number of models with the same architecture for the purpose of finding the optimum solution. To archieve a Linear weight, the weight of the various models will be flattened into a 1d array, where weight order is retained from the input layer to the output layer.
+So basically, Just like every other genetic algorithm applications, n populations chromosomes will be initialized,where n is the number of individual or chromosomes to be randomly created. However In This case the chromosomes are not going to be 0s and 1s but the weights of the n instance of the ANN archtecture i.e, we are creating n number of models with the same architecture for the purpose of finding the optimum solution. To achieve a Linear weight, the weight of the various models will be flattened into a 1d array, where weight order is retained from the input layer to the output layer.
 
                                                         << The loop >>
                                 *The loop* are it implices is the repetition of the following steps
 
                                                 **forward and backward propagation**
-In this step, we will pass batch of data into each of the network in a forward approach, after which fitness function is applied to calcution *loss*, *accuracy*, *f1score*. After the forward pass the first stage of optimization is done with Gradient Descent. 
+In this step, we will pass batch of data into each of the network in a forward approach, after which fitness function is applied to calculation *loss*, *accuracy*, *f1score*. After the forward pass the first stage of optimization is done with Gradient Descent. 
 
 
-                                                        ** Fitness Funtion **
-The first optimization using GD is immedietly followed by a GA optimization using the *loss, accuracy and f1score* as it's fitness funtion. The fitness value is calculated by normalizing each of the values and find their mean.
+                                                        ** Fitness Function **
+The first optimization using GD is immediately  followed by a GA optimization using the *loss, accuracy and f1score* as it's fitness function. The fitness value is calculated by normalizing each of the values and find their mean.
 
 == implementation example. ==
 
@@ -121,14 +121,14 @@ Next we calculate the mean of this normalized values and then normalized them.
 The Sum of the mean adds up to 1.
 
 == Reason For This Approach ==
-When training a neural network for real world application, it is of best practice to pick models that that has a low loss, at the same time high accuracy and score . This will also help avoid been stuck at a local minima. 
+When training a neural network for real world application, it is of best practice to pick models that that has a low loss, at the same time high accuracy and score . This will also help avoid being stuck at a local minima. 
 
 
     ** Selection Operator (roulette-wheel selection -- https://en.wikipedia.org/wiki/Selection_(genetic_algorithm))**
     
 Selection is the stage of a genetic algorithm in which individual genomes are chosen from a population for later breeding (using the crossover operator). The Selection method that will be Used for this project is the roulette-wheel selection. 
 
-In the roulette wheel selection, the probability of choosing an individual for breeding of the next generation is proportional to its fitness, the better the fitness is, the higher chance for that individual to be chosen. Choosing individuals can be depcited as spinning a roulette that has as many pockets as there are individuals in the current generation, with sizes depending on their probability. Probability of choosing individual i is equal to *p_{i} = f_{i}/summation(f_{j}  from j=1 to j=N, where N is the population size)*
+In the roulette wheel selection, the probability of choosing an individual for breeding of the next generation is proportional to its fitness, the better the fitness is, the higher chance for that individual to be chosen. Choosing individuals can be depicted as spinning a roulette that has as many pockets as there are individuals in the current generation, with sizes depending on their probability. Probability of choosing individual i is equal to *p_{i} = f_{i}/summation(f_{j}  from j=1 to j=N, where N is the population size)*
 
 , where f_{i} is the fitness of i and N is the size of current generation (note that in this method one individual can be drawn multiple times) If we're working on minimization problem, it is however needed to transform it into maximization problem (which can be easily done by taking the inversion of our fitness). However, Our implementation allows some level of randomness by giving chance to individuals with low fitness to move to the next generation. This will help avoid been stuck at local minima.
 
@@ -151,10 +151,10 @@ Mutation is a genetic operator used to maintain genetic diversity from one gener
 
 The classic example of a mutation operator involves a probability that an arbitrary bit in a genetic sequence will be flipped from its original state. A common method of implementing the mutation operator involves generating a random variable for each bit in a sequence. This random variable tells whether or not a particular bit will be flipped. This mutation procedure, based on the biological point mutation, is called single point mutation. Other types are inversion and floating point mutation. When the gene encoding is restrictive as in permutation problems, mutations are swaps, inversions, and scrambles.
 
-The purpose of mutation in GAs is to introduce diversity into the sampled population. Mutation operators are used in an attempt to avoid local minima by preventing the population of chromosomes from becoming too similar to each other, thus slowing or even stopping convergence to the global optimum. This reasoning also leads most GA systems to avoid only taking the fittest of the population in generating the next generation, but rather selecting a random (or semi-random) set with a weighting toward those that are fitter.
+The purpose of mutation in GAs is to introduce diversity into the sampled population. Mutation operators are used in an attempt to avoid local minima by preventing the population of chromosomes from becoming too similar to each other, thus slowing or even stopping convergence to the global optimum. This reasoning also leads most GA systems to avoid only taking the fittest of the population in generating the next generation, but rather selecting a random (or semi-random) set with a weighting toward those that are more fit.
 
 == Implementation ==
-In this program, n gene values are selected by specifying a constant value *pop_prob* which is a value between zero and one, zero meaning to select no gene and one meaning to select all genes for mutation this value is specified by the user. After  genes to be mutated are selected, n random probabilities is generated to determine which gene finally becomes mutated. Any probability value that is greated than a specific threshold that is specified by the user will finally be mutated the rest will retain their initial values. Mutation is done by passing current value of a gene through a sigmoid function that shrinks the value between zero and one.
+In this program, n gene values are selected by specifying a constant value *pop_prob* which is a value between zero and one, zero meaning to select no gene and one meaning to select all genes for mutation this value is specified by the user. After  genes to be mutated are selected, n random probabilities is generated to determine which gene finally becomes mutated. Any probability value that is greater than a specific threshold that is specified by the user will finally be mutated the rest will retain their initial values. Mutation is done by passing current value of a gene through a sigmoid function that shrinks the value between zero and one.
 
                                                              <!-- ** Elitism ** -->
 
