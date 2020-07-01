@@ -22,7 +22,7 @@ ans1 =    pd.DataFrame(lst, columns=['INSPECTION_ACT','target'])
 
 #Test2 
 
-dataset1 = pd.DataFrame([   'FREE TRADE','VERIFIED',
+dataset2 = pd.DataFrame([   'FREE TRADE','VERIFIED',
                             'RE-ROUTE','INPUTED WRONGLY',
                             '',
                             'TAGGED AS ARRIVED','EXAMINATION',
@@ -36,11 +36,21 @@ dataset1 = pd.DataFrame([   'FREE TRADE','VERIFIED',
                             '.......'
                         ], columns=['INSPECTION_ACT'])
 
+ans2 = ['FREE', 'TRADE', 'VERIFIED', 'RE-ROUTE', 'INPUTED', 'WRONGLY', 
+        'TAGGED','AS', 'ARRIVED', 'EXAMINATION', 'EXAMS', 'BY', 'IN', 
+        'COMPLIANCE', 'MODIFIED', 'YOU', 'MAY', 'PROCEED', 'DN', 'BASED', 
+        'ON', 'DECLARATION', 'Sleeping']
+
 class label_data:
     def __call__(self,X):
-        return labeller().transform(X)
+        return Labeller().transform(X) == ans1
+
+class encode_strings:
+    def __call__(self,X):
+        return String_Encoder().transform(X) == ans2
+        
 def main():
     print(f'result {label_data()(dataset1)}')
-
+    print(f'result {encode_strings()(dataset2)}')
 if __name__ == "__main__":
     main()
